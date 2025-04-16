@@ -1,19 +1,31 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 pool:
   name: Default
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  resourceGroupName: 'gpatinorg01'
+  deploymentName: 'GPvmDeployment'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+- job: DeployBicep
+  displayName: 'Deploy Azure VM using Bicep'
+  steps:
+
+  - checkout: self
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'GPServiceConnection'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "Deploying Bicep template..."
+        az deployment group create \
+          --name $(deploymentName) \
+          --resource-group $(resourceGroupName) \
+          --template-file ./gpvm1.bicep \
+          --parameters adminPassword='FlyAhead1!'
