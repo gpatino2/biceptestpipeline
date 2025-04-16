@@ -17,6 +17,13 @@ jobs:
 
   - checkout: self
 
+  - task: AzureKeyVault@2
+    inputs:
+      azureSubscription: 'GPServiceConnection'
+      KeyVaultName: 'gpatino-kv2'
+      SecretsFilter: 'winAdminPwd'
+      RunAsPreJob: true
+
   - task: AzureCLI@2
     inputs:
       azureSubscription: 'GPServiceConnection'
@@ -28,4 +35,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters adminPassword='FlyAhead1!'
+          --parameters adminPassword='$(winAdminPwd)'
