@@ -21,7 +21,7 @@ jobs:
     inputs:
       azureSubscription: 'GPServiceConnection'
       KeyVaultName: 'gpatino-kv2'
-      SecretsFilter: 'adminPassword'
+      SecretsFilter: 'adminID,adminPassword'
       RunAsPreJob: true
 
   - task: AzureCLI@2
@@ -35,4 +35,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters adminUsername=ahead adminPassword='$(adminPassword)'
+          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)'
