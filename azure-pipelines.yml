@@ -15,7 +15,7 @@ jobs:
   displayName: 'Deploy Azure VM using Bicep'
   steps:
 
-  - checkout: self
+#  - checkout: self
 
   - task: AzureKeyVault@2
     inputs:
