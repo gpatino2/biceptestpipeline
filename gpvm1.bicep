@@ -1,4 +1,4 @@
-@description('The Azure location where resources will be deployed.')
+@description('The Azure location where resources will be deployed (USEAST)')
 param location string = resourceGroup().location
 
 @description('The name of the virtual machine.')
