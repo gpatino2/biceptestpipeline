@@ -7,7 +7,7 @@ param vmName string = 'gpatinoVM1'
 @description('The admin username for the virtual machine.')
 param adminUsername string = 'ahead'
 
-@description('The admin password for the virtual machine.')
+@description('The administrator password for the virtual machine.')
 @secure()
 param adminPassword string
 
