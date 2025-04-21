@@ -11,6 +11,9 @@ param adminUsername string = 'ahead'
 @secure()
 param adminPassword string
 
+@description('The administrator username for the virtual machine.')
+param vmSize string = 'Standard_B2s'
+
 // Define a Virtual Network with a single subnet
 resource vnet 'Microsoft.Network/virtualNetworks@2021-02-01' = {
   name: '${vmName}-vnet'
@@ -98,7 +101,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-07-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_B2s'
+      vmSize: vmSize
     }
     osProfile: {
       computerName: vmName
