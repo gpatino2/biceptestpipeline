@@ -3,6 +3,11 @@ trigger:
     include:
       - main
 
+parameters:
+  - name: vmSize
+    type: string
+    default: 'Standard_B2s'
+
 pool:
   name: Default
 
