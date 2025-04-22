@@ -4,9 +4,9 @@ trigger:
       - main
 
 parameters:
-  - name: virtualMachineSize
+  - name: virtualMachineName
     type: string
-    default: 'Standard_B2s'
+    default: 'gpatinovm01'
 
 pool:
   name: Default
@@ -40,4 +40,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)'
+          --parameters vmName='$(virtualMachineName)' adminUsername='$(adminID)' adminPassword='$(adminPassword)'
