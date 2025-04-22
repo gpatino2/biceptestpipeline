@@ -8,6 +8,10 @@ parameters:
     type: string
     default: 'gpatinovm01'
 
+  - name: virtualMachineSize
+    type: string
+    default: 'Standard_B2s'
+
 pool:
   name: Default
 
@@ -40,4 +44,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters vmName=${{ parameters.virtualMachineName }} adminUsername='$(adminID)' adminPassword='$(adminPassword)'
+          --parameters vmName=${{ parameters.virtualMachineName }} vmSize= {{ parameters.virtualMachineSize }} adminUsername='$(adminID)' adminPassword='$(adminPassword)'
