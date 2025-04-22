@@ -4,7 +4,7 @@ trigger:
       - main
 
 parameters:
-  - name: vmSize
+  - name: virtualMachineSize
     type: string
     default: 'Standard_B2s'
 
@@ -40,4 +40,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)' vmSize='$(vmSize)'
+          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)' vmSize='$(virtualMachineSize)'
