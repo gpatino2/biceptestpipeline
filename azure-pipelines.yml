@@ -40,4 +40,4 @@ jobs:
           --name $(deploymentName) \
           --resource-group $(resourceGroupName) \
           --template-file ./gpvm1.bicep \
-          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)' vmSize='$(virtualMachineSize)'
+          --parameters adminUsername='$(adminID)' adminPassword='$(adminPassword)'
